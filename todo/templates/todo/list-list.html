@@ -1,0 +1,18 @@
+{% extends "todo/base.html" %}
+
+{% block todo_content_header %}
+	<h1>All Lists</h1>
+{% endblock %}
+
+{% block todo_page_menu %}
+
+{% endblock %}
+
+{% block todo_content %}
+	<ul class="todolist-list">
+	{% for list in lists %}
+		{% include "todo/fragments/list-list-listitem.html" %}
+	
+	{% endfor %}
+	</ul>
+{% endblock %}
