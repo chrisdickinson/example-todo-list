@@ -20,4 +20,4 @@ class Item(models.Model):
         return u'%s'%self.goal
 
     def get_absolute_url(self):
-        return reverse('todo-list-item', kwargs={'slug':self.list.slug, 'id':self.pk})
+        return reverse('todo-list-item', kwargs={'slug':self.list.slug, 'pk':self.pk})
