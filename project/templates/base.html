@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% block extrahead %}
+    {% endblock %}
+</head>
+<body id="{% block body_id %}{% endblock %}">
+<div id="wrap">
+    <div id="content-header">
+        {% block content_header %}
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="page-menu">
+        {% block page_menu %}
+        {% endblock %}
+    </div>
+</div>
+</html>
