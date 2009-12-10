@@ -21,3 +21,5 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return reverse('todo-list-item', kwargs={'slug':self.list.slug, 'pk':self.pk})
+    class Meta:
+        ordering = ['order',]
