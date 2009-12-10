@@ -20,6 +20,6 @@ def todo_list(request, slug):
 def todo_list_item(request, slug, pk):
     list_item = get_object_or_404(Item, list__slug=slug, pk=int(pk))
     context = {
-        'item':item,
+        'item':list_item,
     }
     return render_to_response('todo/list-item-detail.html', context, context_instance=RequestContext(request))
