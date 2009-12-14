@@ -1,0 +1,25 @@
+{% extends "todo/base.html" %}
+
+{% block todo_content_header %}
+	<h1>{{ item.goal }}</h1>
+{% endblock %}
+
+{% block todo_page_menu %}
+
+{% endblock %}
+
+{% block todo_content %}
+	<div>
+		<dl class="todo-list-item-details">
+			<dt>From list:</dt>
+			<dd>{{ item.list }}</dd>
+		{% ifequal item.when|timeuntil "0 minutes" %}
+			<dt>Completed</dt>
+			<dd>{{ item.when|timesince }} ago</dd>
+		{% else %}
+			<dt>Complete in</dt>
+			<dd>{{ item.when|timeuntil }}</dd>
+		{% endifequal %}
+		</dl>
+	</div>
+{% endblock %}
