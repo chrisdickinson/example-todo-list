@@ -37,10 +37,7 @@ def todo_list_item(request, slug, pk):
             if completion_form.is_valid():
                 user = User.objects.get(pk=int(completion_form.cleaned_data['user']))
                 if user == list_item.list.owner:
-                    if completion_form.cleaned_data['is_done'] == 0:
-                        list_item.is_done = False
-                    else:
-                        list_item.is_done = True
+                    list_item.is_done = completion_form.cleaned_data['is_done']
                     list_item.save()
                     return HttpResponseRedirect(list_item.get_absolute_url()) 
 
