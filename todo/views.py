@@ -29,18 +29,19 @@ def todo_list(request, slug):
 def todo_list_item(request, slug, pk):
     list_item = get_object_or_404(Item, list__slug=slug, pk=int(pk))
 
-    completion_form = CompletionForm({'user':request.user.pk, 'is_done':list_item.is_done})
-    if request.method == 'POST':
-        completion_form = CompletionForm(request.POST)
-        if completion_form.is_valid():
-            user = User.objects.get(pk=int(completion_form.cleaned_data['user']))
-            if user == list_item.list.owner:
-                if completion_form.cleaned_data['is_done'] == 0:
-                    list_item.is_done = False
-                else:
-                    list_item.is_done = True
-                list_item.save()
-                return HttpResponseRedirect(list_item.get_absolute_url()) 
+    if user.is_authenticated():
+        completion_form = CompletionForm({'user':request.user.pk, 'is_done':list_item.is_done})
+        if request.method == 'POST':
+            completion_form = CompletionForm(request.POST)
+            if completion_form.is_valid():
+                user = User.objects.get(pk=int(completion_form.cleaned_data['user']))
+                if user == list_item.list.owner:
+                    if completion_form.cleaned_data['is_done'] == 0:
+                        list_item.is_done = False
+                    else:
+                        list_item.is_done = True
+                    list_item.save()
+                    return HttpResponseRedirect(list_item.get_absolute_url()) 
 
     context = {
         'item':list_item,
